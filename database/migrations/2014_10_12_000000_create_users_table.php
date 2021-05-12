@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->string('provider_id')->nullable();
+            $table->foreignId('bonus_id')->nullable()->references('id')->on('bonuses')->cascadeOnDelete();
             $table->timestamps();
         });
     }

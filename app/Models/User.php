@@ -59,4 +59,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function bonus() {
+        return $this->belongsTo(Bonus::class);
+    }
 }
