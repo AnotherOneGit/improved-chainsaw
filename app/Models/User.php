@@ -27,7 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'provider_id'
+        'provider_id',
+        'bonus_id'
     ];
 
     /**
@@ -60,7 +61,14 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function bonus() {
+    public function bonus()
+    {
         return $this->belongsTo(Bonus::class);
+    }
+
+    public function availableBonuses()
+    {
+        $bonus = json_decode(Bonus::where('amount', '>', 0)->orWhere('amount', null)->get('id'));
+        return array_column($bonus, 'id');
     }
 }

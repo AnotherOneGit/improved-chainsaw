@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bonus;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class BonusSeeder extends Seeder
 {
@@ -14,18 +14,12 @@ class BonusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('bonuses')->insert(
-            [
-                'title' => 'survey',
-                'amount' => 3,
-            ],
-            [
-                'title' => 'sanatorium',
-            ],
-            [
-                'title' => 'cup',
-                'amount' => 3,
-            ]
-        );
+        $bonuses = [
+            ['title' => 'survey', 'amount' => 3],
+            ['title' => 'sanatorium'],
+            ['title' => 'cup', 'amount' => 5]];
+        foreach ($bonuses as $bonus) {
+            Bonus::create($bonus);
+        }
     }
 }
